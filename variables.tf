@@ -3,8 +3,7 @@ variable "environment_name" {
 }
 
 variable "owner_name" {
-  type    = string
-  default = null
+  type = string
 }
 
 variable "ttl" {
@@ -57,3 +56,14 @@ variable "kubernetes_version" {
   type    = string
   default = null
 }
+
+variable "oauth_scopes" {
+  type = list(string)
+  default = [
+    # "https://www.googleapis.com/auth/compute",
+    "https://www.googleapis.com/auth/devstorage.read_only",
+    "https://www.googleapis.com/auth/logging.write",
+    "https://www.googleapis.com/auth/monitoring",
+  ]
+}
+

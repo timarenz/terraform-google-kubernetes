@@ -8,10 +8,11 @@ locals {
 }
 
 resource "google_container_cluster" "main" {
-  name     = "${var.environment_name}-${var.name}"
-  location = var.region
-  project  = var.project
-  network  = var.network
+  name       = "${var.environment_name}-${var.name}"
+  location   = var.region
+  project    = var.project
+  network    = var.network
+  subnetwork = var.subnet
 
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
@@ -29,6 +30,10 @@ resource "google_container_cluster" "main" {
       issue_client_certificate = false
     }
   }
+
+  # ip_allocation_policy {
+  #   use_ip_aliases = true
+  # }
 }
 
 resource "google_container_node_pool" "main" {
@@ -46,13 +51,8 @@ resource "google_container_node_pool" "main" {
       disable-legacy-endpoints = "true"
     }
 
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/devstorage.read_only",
-      "https://www.googleapis.com/auth/logging.write",
-      "https://www.googleapis.com/auth/monitoring",
-    ]
+    oauth_scopes = var.oauth_scopes
 
     labels = local.all_tags
   }
 }
-
