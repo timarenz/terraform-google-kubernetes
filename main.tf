@@ -48,7 +48,7 @@ resource "google_container_cluster" "main" {
     password = ""
 
     client_certificate_config {
-      issue_client_certificate = false
+      issue_client_certificate = true
     }
   }
 
