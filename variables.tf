@@ -16,8 +16,7 @@ variable "project" {
 }
 
 variable "region" {
-  type    = string
-  default = "europe-west4"
+  type = string
 }
 
 variable "name" {
@@ -60,10 +59,24 @@ variable "kubernetes_version" {
 variable "oauth_scopes" {
   type = list(string)
   default = [
-    # "https://www.googleapis.com/auth/compute",
+    "https://www.googleapis.com/auth/compute",
     "https://www.googleapis.com/auth/devstorage.read_only",
     "https://www.googleapis.com/auth/logging.write",
     "https://www.googleapis.com/auth/monitoring",
   ]
 }
 
+variable "use_ip_aliases" {
+  type    = bool
+  default = true
+}
+
+variable "service_account" {
+  type    = string
+  default = null
+}
+
+variable "http_load_balancing" {
+  type    = bool
+  default = false
+}
