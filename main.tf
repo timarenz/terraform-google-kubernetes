@@ -48,7 +48,6 @@ resource "google_container_cluster" "main" {
   }
 
   ip_allocation_policy {
-    use_ip_aliases = var.use_ip_aliases
   }
 
   addons_config {

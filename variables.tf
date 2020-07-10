@@ -66,11 +66,6 @@ variable "oauth_scopes" {
   ]
 }
 
-variable "use_ip_aliases" {
-  type    = bool
-  default = true
-}
-
 variable "service_account" {
   type    = string
   default = null
