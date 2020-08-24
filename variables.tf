@@ -37,8 +37,9 @@ variable "tags" {
 }
 
 variable "node_count" {
-  type    = number
-  default = 3
+  type        = number
+  default     = 1
+  description = "Set to 1 this will deployed 3 nodes as 1 node will be deployed per region and not as an overall number of nodes."
 }
 
 variable "node_locations" {
