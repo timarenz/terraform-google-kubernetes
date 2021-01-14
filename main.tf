@@ -36,6 +36,10 @@ resource "google_container_cluster" "main" {
     oauth_scopes = var.oauth_scopes
 
     labels = local.all_tags
+
+    workload_metadata_config {
+      node_metadata = "GKE_METADATA_SERVER"
+    }
   }
 
   master_auth {
@@ -54,6 +58,10 @@ resource "google_container_cluster" "main" {
     http_load_balancing {
       disabled = var.http_load_balancing
     }
+  }
+
+  workload_identity_config {
+    identity_namespace = "${var.project}.svc.id.goog"
   }
 
 }
